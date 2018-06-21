@@ -1,12 +1,14 @@
 package tw.com.softleader.itextpdfkhmer;
 
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.itextpdf.io.font.FontConstants;
 import com.itextpdf.io.font.PdfEncodings;
+import com.itextpdf.kernel.colors.DeviceRgb;
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
@@ -46,9 +48,14 @@ public class ITextPdfApp {
 		PdfPage page = pdf.addNewPage(PageSize.A4);
 		PdfCanvas pdfCanvas = new PdfCanvas(page);
 		Rectangle rectangle = new Rectangle(0, 0, 400, 800);
-		pdfCanvas.rectangle(rectangle);
-		pdfCanvas.stroke();
+		
+		
+		
+//		pdfCanvas.rectangle(rectangle);
+//		pdfCanvas.stroke();
 		Canvas canvas = new Canvas(pdfCanvas, pdf, rectangle);
+		canvas.setStrokeColor(new DeviceRgb(Color.BLUE));
+		
 		// PdfFont font = PdfFontFactory.createFont(FontConstants.TIMES_ROMAN);
 		PdfFont bold = PdfFontFactory.createFont(FontConstants.TIMES_BOLD);
 		PdfFont khmer_os_font = PdfFontFactory.createFont(KHMER_OS_FONT, PdfEncodings.IDENTITY_H);
@@ -62,8 +69,13 @@ public class ITextPdfApp {
 
 		Paragraph pTitle = new Paragraph().add(title);
 		Paragraph p1 = new Paragraph(data1);
+		p1.setBackgroundColor(new DeviceRgb(Color.GRAY));
+		
 		Paragraph p2 = new Paragraph(data2);
 		Paragraph p3 = new Paragraph(data3);
+		
+		
+		
 		canvas.add(pTitle);
 		canvas.add(p1);
 		canvas.add(p2);
